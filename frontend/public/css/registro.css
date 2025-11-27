@@ -1,0 +1,156 @@
+/* ===== VARIÁVEIS DE TEMA ===== */
+:root {
+  --primary-color: #ffb300; 
+  --secondary-color: #4a90e2; 
+  --text-color: #ffffff;
+  --box-bg: rgba(25, 25, 35, 0.85);
+  --border-radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+/* ===== BACKGROUND ===== */
+body.login-bg {
+  background: url('./teladelogin.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+/* ===== CONTAINER DO FORM ===== */
+form#registerForm {
+  background: var(--box-bg);
+  padding: 40px 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ===== TITULO ===== */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-shadow: 0 0 6px rgba(255, 179, 0, 0.5);
+}
+
+/* ===== INPUTS ===== */
+form#registerForm input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: var(--text-color);
+  font-size: 1em;
+  outline: none;
+  transition: 0.3s;
+}
+
+form#registerForm input:focus {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* ===== BOTÕES ===== */
+form#registerForm button {
+  padding: 12px 0;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s;
+  color: #000;
+}
+
+form#registerForm button:hover {
+  background: #ffd54f;
+  box-shadow: 0 0 15px var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* ===== BOTÃO SECUNDÁRIO ===== */
+.secondary-button {
+  margin-top: 10px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.secondary-button:hover {
+  background: var(--primary-color);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* ===== ALERT MENSAGEM ===== */
+.alert {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9em;
+  display: none;
+}
+
+.alert.success {
+  color: #00ff99;
+}
+
+.alert.error {
+  color: #ff5555;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 480px) {
+  form#registerForm {
+    padding: 30px 20px;
+  }
+}
+/* BOTÃO "Fazer Login" igual ao botão Entrar */
+.link-fazerlogin {
+  display: block;
+  width: 100%;
+  max-width: 380px;           
+  background: var(--primary-color);
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 0;
+  border-radius: 8px;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 20px rgba(255, 179, 0, 0.25);
+  transition: 0.3s ease;
+}
+
+.link-fazerlogin:hover {
+  background: #ffd54f;
+  box-shadow: 0 0 15px var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.link-fazerlogin:active {
+  transform: translateY(0);
+}

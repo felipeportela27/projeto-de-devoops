@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <link rel="stylesheet" href="public/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    .alert {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: none;
+    }
+    .alert.error { background: #ffd4d4; color: #b30000; }
+    .alert.success { background: #d4ffd8; color: #008000; }
+  </style>
+</head>
+
+<body class="login-bg">
+
+  <h1>Login</h1>
+
+  <form id="loginForm">
+    <label>Email:</label>
+    <input type="email" id="email" required>
+
+    <label>Senha:</label>
+    <input type="password" id="password" required>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+ <a href="registro.html" class="link-criar-conta">Criar conta</a>
+
+  <div id="message" class="alert"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAbKInkgmAjJ28rgoo99TejCBIoIQO2b-s",
+      authDomain: "gerenciador-de-tarefas-effd1.firebaseapp.com",
+      projectId: "gerenciador-de-tarefas-effd1",
+      storageBucket: "gerenciador-de-tarefas-effd1.firebasestorage.app",
+      messagingSenderId: "782977639540",
+      appId: "1:782977639540:web:a6f9a3e23800ec716a5d21",
+      measurementId: "G-526SJ2RS3B"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const messageDiv = document.getElementById("message");
+
+    function showMessage(text, type) {
+      messageDiv.textContent = text;
+      messageDiv.className = "alert " + type;
+      messageDiv.style.display = "block";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        showMessage("Login realizado!", "success");
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1000);
+
+      } catch (error) {
+        console.error(error);
+        showMessage("Erro: " + error.message, "error");
+      }
+    });
+  </script>
+
+</body>
+</html>

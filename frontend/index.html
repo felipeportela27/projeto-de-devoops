@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Tarefas</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="public/css/App.css">
+</head>
+
+<body>
+
+  <!-- Botão de Logout -->
+  <a href="login.html" class="botãosair">Sair</a>
+
+  <div class="board">
+
+    <form id="todo-form">
+      <input type="text" placeholder="Nova Tarefa..." id="todo-input">
+      <button type="submit">Adicionar +</button>
+      <div id="lixeira">Excluir</div>
+    </form>
+
+    <div class="lanes">
+      <div class="swim-lane" id="todo-lane">
+        <h3 class="heading">Tudo</h3>
+      </div>
+
+      <div class="swim-lane" id="doing-lane">
+        <h3 class="heading">Fazendo</h3>
+      </div>
+
+      <div class="swim-lane" id="done-lane">
+        <h3 class="heading">Feito</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Firebase + Autenticação -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { 
+      getAuth, 
+      onAuthStateChanged, 
+      signOut 
+    } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAbKInkgmAjJ28rgoo99TejCBIoIQO2b-s",
+      authDomain: "gerenciador-de-tarefas-effd1.firebaseapp.com",
+      projectId: "gerenciador-de-tarefas-effd1",
+      storageBucket: "gerenciador-de-tarefas-effd1.firebasestorage.app",
+      messagingSenderId: "782977639540",
+      appId: "1:782977639540:web:a6f9a3e23800ec716a5d21"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Impede acesso sem login
+    onAuthStateChanged(auth, (user) => {
+      if (!user) window.location.href = "login.html";
+    });
+  </script>
+
+  <!-- ORDEM CORRETA DOS SCRIPTS -->
+  <script src="public/js/arrastar.js"></script>
+  <script src="public/js/todo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* ---- RESET/BASIC STYLING ---- */
+body {
+background:url('./teladelogin.jpeg');
+color: #333;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 20px;
+}
+
+.board {
+width: 100%;
+max-width: 1400px;
+height: 100vh;
+overflow: auto;
+background-color: #2e2c2c;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+/* ---- FORM ---- */
+#todo-form {
+padding: 0;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+#todo-form input {
+padding: 14px 16px;
+margin-right: 12px;
+width: 320px;
+border-radius: 8px;
+border: 1px solid #ddd;
+box-shadow: none;
+background: rgb(10, 10, 10);
+font-size: 16px;
+outline: none;
+transition: border-color 0.3s ease;
+}
+
+#todo-form input:focus {
+border-color: #4a90e2;
+box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+}
+
+#todo-form button {
+padding: 14px 24px;
+border-radius: 8px;
+border: none;
+background: #d0f332;
+color: white;
+font-weight: bold;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#todo-form button:hover {
+background-color: #dde01c;
+}
+
+#lixeira {
+width: 110px;
+height: 40px;
+border-radius: 8px;
+border: none;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+background: #e0e0e0;
+color: #555;
+font-weight: 600;
+font-size: 16px;
+cursor: pointer;
+user-select: none;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#lixeira.hover {
+background-color: #ff4d4f;
+color: white;
+box-shadow: 0 4px 12px rgba(255, 77, 79, 0.6);
+}
+
+/* ---- BOARD ---- */
+.lanes {
+display: flex;
+align-items: flex-start;
+justify-content: start;
+gap: 24px;
+padding: 24px 32px;
+overflow-x: auto;
+height: 100%;
+}
+
+.heading {
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 12px;
+border-bottom: 2px solid #ecda37;
+padding-bottom: 6px;
+}
+
+.swim-lane {
+display: flex;
+flex-direction: column;
+gap: 12px;
+background: #000000;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+padding: 16px;
+border-radius: 12px;
+width: 300px;
+min-height: 150px;
+flex-shrink: 0;
+}
+
+.task {
+background-color: rgb(44, 44, 44);
+color: #fffafa;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+padding: 14px 16px;
+border-radius: 10px;
+font-size: 16px;
+cursor: grab;
+user-select: none;
+transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.task:active {
+cursor: grabbing;
+}
+
+.is-dragging {
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+background-color: #e6f0ff;
+color: #1a1a1a;
+}
+
+.botãosair {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s, box-shadow 0.3s;
+}
