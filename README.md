@@ -129,7 +129,7 @@ Assim que abrir o Ubuntu novamente:
 
 🟩 PASSO 1 — Ativar Docker dentro do WSL
 
-Execute:
+Execute: sudo service docker start
 
 sudo service docker start
 
@@ -141,7 +141,8 @@ cd "/mnt/c/Users/felip/OneDrive/Área de Trabalho/projeto de devoops"
 
 🟩 PASSO 3 — Subir toda a infraestrutura
 
-Com 1 comando:
+Com 1 comando: docker-compose up --build
+
 
 docker-compose up --build
 
@@ -168,7 +169,7 @@ http://localhost:3000
 
 Login padrão:
 user: admin
-senha: admin
+senha: admin01
 
 🛑 SE QUISER PARAR TUDO
 docker-compose down
@@ -196,11 +197,4 @@ docker-compose up --build
 ✔ Zabbix + Grafana
 ✔ Pronto para deploy AWS
 
-Se quiser, agora podemos:
 
-👉 montar o host do Zabbix
-👉 criar dashboards no Grafana
-👉 montar o CI/CD via GitHub Actions
-👉 subir para AWS
-
-O que quer fazer agora?
