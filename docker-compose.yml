@@ -1,121 +1,79 @@
 version: "3.8"
 
 services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend/tasks.db:/app/tasks.db
+    networks:
+      - appnet
 
-  # ========================================
-  # FRONTEND (NGINX)
-  # ========================================
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend-app
+    build: ./frontend
+    container_name: frontend
     ports:
       - "8080:80"
     depends_on:
       - backend
     networks:
-      - devops-net
+      - appnet
 
-  # ========================================
-  # BACKEND (NODE + SQLITE)
-  # ========================================
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend-api
-    ports:
-      - "4000:4000"
+  zabbix-db:
+    image: mysql:5.7
+    container_name: zabbix-db
+    environment:
+      MYSQL_ROOT_PASSWORD: zabbix
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
     volumes:
-      - backend-db:/app     # BANCO FICA DENTRO DO CONTAINER (CORRETO)
+      - zabbix_db:/var/lib/mysql
     networks:
-      - devops-net
+      - appnet
 
-  # ========================================
-  # ZABBIX SERVER
-  # ========================================
   zabbix-server:
-    image: zabbix/zabbix-server-pgsql:latest
+    image: zabbix/zabbix-server-mysql:alpine-latest
     container_name: zabbix-server
     environment:
       DB_SERVER_HOST: zabbix-db
-      POSTGRES_USER: zabbix
-      POSTGRES_PASSWORD: zabbix
-      POSTGRES_DB: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
     depends_on:
       - zabbix-db
     ports:
       - "10051:10051"
     networks:
-      - devops-net
+      - appnet
 
-  # ========================================
-  # ZABBIX DATABASE (POSTGRES)
-  # ========================================
-  zabbix-db:
-    image: postgres:15
-    container_name: zabbix-db
-    environment:
-      POSTGRES_USER: zabbix
-      POSTGRES_PASSWORD: zabbix
-      POSTGRES_DB: zabbix
-    volumes:
-      - zabbix-db:/var/lib/postgresql/data
-    networks:
-      - devops-net
-
-  # ========================================
-  # ZABBIX WEB (interface web)
-  # ========================================
   zabbix-web:
-    image: zabbix/zabbix-web-nginx-pgsql:latest
+    image: zabbix/zabbix-web-nginx-mysql:alpine-latest
     container_name: zabbix-web
     environment:
       DB_SERVER_HOST: zabbix-db
-      POSTGRES_USER: zabbix
-      POSTGRES_PASSWORD: zabbix
-      POSTGRES_DB: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
       ZBX_SERVER_HOST: zabbix-server
-    ports:
-      - "8081:8080"
+      PHP_TZ: America/Sao_Paulo
     depends_on:
       - zabbix-server
+    ports:
+      - "8081:8080"
     networks:
-      - devops-net
+      - appnet
 
-  # ========================================
-  # ZABBIX AGENT
-  # ========================================
-  zabbix-agent:
-    image: zabbix/zabbix-agent:latest
-    container_name: zabbix-agent
-    environment:
-      ZBX_SERVER_HOST: zabbix-server
-    networks:
-      - devops-net
-
-  # ========================================
-  # GRAFANA
-  # ========================================
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana
     container_name: grafana
     ports:
       - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
     networks:
-      - devops-net
+      - appnet
 
-
-# ========================================
-# REDES E VOLUMES
-# ========================================
 networks:
-  devops-net:
+  appnet:
 
 volumes:
-  backend-db:
-  zabbix-db:
-  grafana-data:
+  zabbix_db:

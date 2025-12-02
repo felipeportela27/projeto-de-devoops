@@ -1,7 +1,7 @@
 // ===============================
-// URL da API (ACESSO PELO NAVEGADOR)
+// URL da API (AGORA FUNCIONA NO DOCKER)
 // ===============================
-const API_URL = "http://localhost:4000";
+const API_URL = "http://host.docker.internal:4000";
 
 // ===============================
 // ELEMENTOS DO DOM
@@ -18,7 +18,7 @@ const lanes = {
 const lixeira = document.getElementById("lixeira");
 
 // ===============================
-// FUNÇÃO – Criar elemento visual da tarefa
+// CRIA ELEMENTO VISUAL
 // ===============================
 function createTaskElement(task) {
   const el = document.createElement("p");
@@ -27,29 +27,23 @@ function createTaskElement(task) {
   el.innerText = task.title;
   el.dataset.id = task.id;
 
-  attachDragListeners(el); // listeners de arrastar (vem do arrastar.js)
-
+  attachDragListeners(el);
   return el;
 }
 
-// ===============================
-// FUNÇÃO – Adicionar tarefa ao quadro (UI)
-// ===============================
 function addTaskToBoard(task) {
   const lane = lanes[task.lane] || lanes.todo;
-  const el = createTaskElement(task);
-  lane.appendChild(el);
+  lane.appendChild(createTaskElement(task));
 }
 
 // ===============================
-// API – Buscar tarefas do backend
+// API – BUSCAR TAREFAS
 // ===============================
 async function loadTasks() {
   try {
     const res = await fetch(`${API_URL}/tasks`);
     const tasks = await res.json();
 
-    // limpar tudo antes de carregar
     lanes.todo.innerHTML = '<h3 class="heading">Tudo</h3>';
     lanes.doing.innerHTML = '<h3 class="heading">Fazendo</h3>';
     lanes.done.innerHTML = '<h3 class="heading">Feito</h3>';
@@ -62,7 +56,7 @@ async function loadTasks() {
 }
 
 // ===============================
-// API – Criar nova tarefa
+// API – CRIAR TAREFA
 // ===============================
 async function createTask(title) {
   const res = await fetch(`${API_URL}/tasks`, {
@@ -75,7 +69,7 @@ async function createTask(title) {
 }
 
 // ===============================
-// API – Atualizar lane
+// API – ATUALIZAR LANE
 // ===============================
 async function updateTaskLane(id, lane) {
   await fetch(`${API_URL}/tasks/${id}`, {
@@ -86,16 +80,14 @@ async function updateTaskLane(id, lane) {
 }
 
 // ===============================
-// API – Excluir tarefa
+// API – EXCLUIR TAREFA
 // ===============================
 async function deleteTask(id) {
-  await fetch(`${API_URL}/tasks/${id}`, {
-    method: "DELETE"
-  });
+  await fetch(`${API_URL}/tasks/${id}`, { method: "DELETE" });
 }
 
 // ===============================
-// EVENTO – Criar tarefa
+// EVENTO – CRIAR TAREFA
 // ===============================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -110,7 +102,7 @@ form.addEventListener("submit", async (e) => {
 });
 
 // ===============================
-// EVENTO – Arrastar tarefas entre colunas
+// ARRASTAR ENTRE COLUNAS
 // ===============================
 document.querySelectorAll(".swim-lane").forEach((laneElement) => {
   laneElement.addEventListener("dragover", (e) => e.preventDefault());
@@ -143,14 +135,11 @@ lixeira.addEventListener("dragleave", () => {
 
 lixeira.addEventListener("drop", async () => {
   const task = window.elementoArrastado;
-
   if (task) {
     const id = task.dataset.id;
-
     await deleteTask(id);
     task.remove();
   }
-
   lixeira.classList.remove("hover");
 });
 
