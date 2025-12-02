@@ -1,11 +1,7 @@
-# Imagem do nginx
-FROM nginx:alpine
+FROM nginx:latest
 
-# Remove os arquivos padrão
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /usr/share/nginx/html
 
-# Copia TODOS os arquivos do frontend (incluindo index.html, login.html etc)
-COPY . /usr/share/nginx/html/
+COPY . .
 
-# Porta do nginx
 EXPOSE 80
