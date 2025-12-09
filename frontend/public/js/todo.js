@@ -1,7 +1,7 @@
 // ===============================
 // URL da API (AGORA FUNCIONA NO DOCKER)
 // ===============================
-const API_URL = "http://host.docker.internal:4000";
+const API_URL = "http://13.58.26.62:4000";
 
 // ===============================
 // ELEMENTOS DO DOM
