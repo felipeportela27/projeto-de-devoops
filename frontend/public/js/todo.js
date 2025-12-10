@@ -1,7 +1,7 @@
 // ===============================
 // URL da API (AGORA FUNCIONA NO DOCKER)
 // ===============================
-const API_URL = "http://52.14.6.211:4000";
+const API_URL = "http://3.19.255.247:4000";
 
 // ===============================
 // ELEMENTOS DO DOM
