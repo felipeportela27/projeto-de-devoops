@@ -197,7 +197,6 @@ Este projeto implementa um ambiente completo DevOps com:
 ✔ Backend + Frontend prontos
 ✔ Banco SQLite persistente
 ✔ Orquestração Docker completa
-✔ Monitoramento com Zabbix e Grafana
+✔	Usar GIT como ferramenta de gerenciamento de código fonte, com um mínimo de 3 branches
 ✔ Infraestrutura na AWS EC2
-✔ GitFlow com deploy automatizado
 ✔ Testes Postman integrados
