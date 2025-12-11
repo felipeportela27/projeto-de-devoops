@@ -1,7 +1,11 @@
 // ===============================
 // URL da API (AGORA FUNCIONA NO DOCKER)
 // ===============================
-const API_URL = "http://backend:4000";
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:4000"
+    : "http://backend:4000";
+
 
 // ===============================
 // ELEMENTOS DO DOM
