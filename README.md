@@ -1,5 +1,5 @@
 Aqui está um resumo COMPLETO e CLARO de todo o seu projeto DevOps + tutorial de como rodar tudo novamente do zero quando você fechar o Ubuntu ou reiniciar o PC.
-
+...
 ✅ RESUMO COMPLETO DO PROJETO DEVOPS
 
 Seu projeto está composto assim:
