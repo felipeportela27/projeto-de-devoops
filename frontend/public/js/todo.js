@@ -4,8 +4,7 @@
 const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:4000"
-    : "http://backend:4000";
-
+    : "http://" + window.location.hostname + ":4000";
 
 // ===============================
 // ELEMENTOS DO DOM
