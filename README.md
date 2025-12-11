@@ -15,15 +15,4 @@ POST /tasks
 
 DELETE /tasks/:id
 
-✅ 3. Repositório GitHub do Projeto
-https://github.com/felipeportela27/projeto-de-devoops.git
 
-Repositório contendo:
-
-Código do backend
-
-Frontend
-
-Docker Compose
-
-Configurações de EC2 / DevOps
