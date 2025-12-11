@@ -1,7 +1,10 @@
-FROM nginx:latest
+FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/html
+# Limpa os arquivos default do nginx
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY . .
+# Copia todos os arquivos do frontend para o diretório do nginx
+COPY . /usr/share/nginx/html/
 
+# Expõe a porta correta
 EXPOSE 80
