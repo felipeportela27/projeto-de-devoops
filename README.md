@@ -1,3 +1,8 @@
+grupo
+felipe alexandre Portela de Araújo filho-01553362
+Cristiano Curchatuz - 01523144
+Luiz Cristiano- 01536154
+
 📄 Documento – Links do Projeto (Frontend, Backend, Postman e Repositório Git)
 ✅ 1. Link do EC2 (Frontend Rodando)
 http://3.20.237.40:8080/index.html
