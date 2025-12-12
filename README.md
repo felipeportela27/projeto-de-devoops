@@ -151,8 +151,8 @@ git push origin main           # deploy automático EC2
 🖥 Configuração da Instância
 Item	Valor
 Provedor	AWS EC2
-Tipo	t3.micro
-RAM	1 GB
+Tipo	t3.small
+RAM	2 GB
 CPU	1 vCPU
 SO	Ubuntu 22.04
 Região	us‑east‑2
